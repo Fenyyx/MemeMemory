@@ -1,0 +1,70 @@
+body {
+   margin: 0;
+   background: lightblue;
+   overflow: hidden;
+} 
+
+#set {
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+   flex-wrap: wrap;
+}
+
+#game {
+   height: 100vh;
+   max-height: 700px;
+   display: flex;
+   flex-wrap:wrap;
+   align-items: center;
+   justify-content: center;
+}
+
+#stats {
+   color: black;
+   padding: 20px;
+   position: absolute;
+   text-align: center;
+   width: 100%;
+   font-size: 60px;
+}
+
+.card {
+   width: 200px;
+   height: 280px;
+   margin: 18px;
+   position: relative;
+   transition: transform 0.5s; /* Transición para el efeccto de transformación giro */
+   transform-style: preserve-3d; /* Hace que los elementos hijos de la ccarta se rendericen en 3D */
+}
+
+.card.active {
+   transform: rotateY(180deg); /* crea un efecto de giro 3D cuando se añade esta clase a una carta */
+}
+
+.card div {
+   width: 100%;
+   height: 100%;
+   border-radius: 18px;
+   display: flex;
+   position: absolute;
+   align-items: center;
+   justify-content: center;
+   backface-visibility: hidden; /* oculta la parte de atrás */
+   pointer-events: none; /* Para que funcione tuve que impedir que pudieras clicar card como conjunto, con esto targeteas el back solamente */
+}
+
+.card .face {
+   background: #9f16ee;
+   transform: rotateY( 180deg );
+   color: black;
+   font-size: 6rem;
+}
+
+.card .back {
+   
+   background: url(images/back.png) center / contain no-repeat;
+   background-size: 180%;
+}
