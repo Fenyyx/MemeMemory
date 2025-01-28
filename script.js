@@ -14,14 +14,15 @@ let model = `<div class="card"><div class="back"></div><div class="face"></div><
 function activate(event) {
 if(move < 2) { //Limita a 2 las cartas por turno
    event.target.classList.add(`active`) //Le damos la clase activa a la carta seleccionada
-    if (!selectedCards[0] || selectedCards[0] !== event.target) {
+    if ((!selectedCards[0] || selectedCards[0] !== event.target) && !event.target.classList.contains(`active`)) {
+        event.target.classList.add(`active`) //Le damos la clase activa a la carta seleccionada, y prevenimos que le de la vuelta a una carta ya activa
         selectedCards.push(event.target) //Si selectedCards está vacío o es diferente de la primera carta lo añadimos al array
 
         if (++move == 2) //aumentamos move y comprobamos si ya se seleccionaron 2 cartas 
         {
             
         attempts++
-        document.querySelector(`#stats`).innerHTML = attempts + ` ` + `intentos`
+        document.querySelector(`#stats`).innerHTML = attempts + ` ` + `intentos`//Avanza el contador al darle la vuelta a 2 cartas
             if (selectedCards[0].querySelectorAll(`.face`)[0].innerHTML == selectedCards[1].querySelectorAll(`.face`)[0].innerHTML) // Comprueba que las 2 ccartas son iguales
                {
                 selectedCards = []
