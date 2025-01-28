@@ -4,7 +4,7 @@ let cards = [] //Cartas generadas
 let selectedCards = [] //Cartas seleccionadas
 let valuesUsed = [] //Controla cuantas veces se ha usado un valores
 let move = 0 // Movimiento actual
-
+let attempts = 0
 
 
 let model = `<div class="card"><div class="back"></div><div class="face"></div></div>` // Modelo de carta
@@ -19,6 +19,9 @@ if(move < 2) { //Limita a 2 las cartas por turno
 
         if (++move == 2) //aumentamos move y comprobamos si ya se seleccionaron 2 cartas 
         {
+            
+        attempts++
+        document.querySelector(`#stats`).innerHTML = attempts + ` ` + `intentos`
             if (selectedCards[0].querySelectorAll(`.face`)[0].innerHTML == selectedCards[1].querySelectorAll(`.face`)[0].innerHTML) // Comprueba que las 2 ccartas son iguales
                {
                 selectedCards = []
