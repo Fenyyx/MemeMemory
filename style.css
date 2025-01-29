@@ -1,8 +1,11 @@
 body {
    margin: 0;
-   background: lightblue;
+   background: url(moreimages/Background4.jpg) center / contain no-repeat;
    overflow: hidden;
+   background-size: 100%;
 }
+
+
 
 #set {
    height: 100vh;
@@ -24,7 +27,7 @@ body {
 }
 
 #stats {
-   color: black;
+   color: white;
    padding: 20px;
    position: absolute;
    text-align: center;
