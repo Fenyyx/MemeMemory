@@ -22,7 +22,7 @@ if(move < 2) { //Limita a 2 las cartas por turno
         {
             
         attempts++
-        document.querySelector(`#stats`).innerHTML = attempts + ` ` + `intentos`//Avanza el contador al darle la vuelta a 2 cartas
+        document.querySelector(`#stats`).innerHTML = attempts + ` ` + `Trys`//Avanza el contador al darle la vuelta a 2 cartas
             if (selectedCards[0].querySelectorAll(`.face`)[0].innerHTML == selectedCards[1].querySelectorAll(`.face`)[0].innerHTML) // Comprueba que las 2 cartas son iguales
                {
                 selectedCards = []
