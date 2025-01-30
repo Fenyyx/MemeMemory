@@ -1,14 +1,57 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const startMenu = document.createElement("div")
+    startMenu.id = "start-menu"
+    startMenu.innerHTML = `
+        <div class="menu">
+            <h1>MEMOJOJORY</h1>
+            <button id="start-button">Iniciar Juego</button>
+        </div>
+    `
+    document.body.appendChild(startMenu)
 
-const totalCards = 14 //Cartas en pantalla
-let cards = [] //Cartas generadas
-let selectedCards = [] //Cartas seleccionadas
-let valuesUsed = [] //Controla cuantas veces se ha usado un valores
-let move = 0 // Movimiento actual
-let attempts = 0
+    document.getElementById("start-button").addEventListener("click", () => {
+        document.getElementById("start-menu").style.display = "none"; // Oculta el menú
+        document.getElementById("game").style.visibility = "visible"; // Muestra el juego
+        document.getElementById("game").style.opacity = "1"; // Suaviza la transición
+        document.getElementById("stats").style.display = "block"; // Muestra intentos
+        startGame();
+    });
+})
+
+const totalCards = 16 //Cartas en pantalla
+//let cards = [] //Cartas generadas
+//let selectedCards = [] //Cartas seleccionadas
+//let valuesUsed = [] //Controla cuantas veces se ha usado un valores
+//let move = 0 // Movimiento actual
+//let attempts = 0
 
 
-let model = `<div class="card"><div class="back"></div><div class="face"></div></div>` // Modelo de carta
+/* let model = `<div class="card"><div class="back"></div><div class="face"></div></div>` // Modelo de carta
+ */
+function startGame() {
+    // Reiniciar variables
+    attempts = 0
+    move = 0
+    selectedCards = []
+    valuesUsed = []
+    
+    // Actualizar el contador de intentos en la interfaz
+    document.querySelector("#stats").innerHTML = "0 Intentos"
 
+    // Limpiar el tablero
+    document.getElementById("game").innerHTML = ""
+
+    // Generar nuevas cartas
+    let model = `<div class="card"><div class="back"></div><div class="face"></div></div>`
+    for (let i = 0; i < totalCards; i++) {
+        let div = document.createElement("div")
+        div.innerHTML = model
+        document.getElementById("game").appendChild(div)
+        randomValue()
+        div.querySelector(".face").innerHTML = getImage(valuesUsed[i]) // Asigna imagen a la carta
+        div.querySelector(".card").addEventListener("click", activate) // Agrega evento de clic
+    }
+}
 
 
 function activate(event) {
@@ -22,12 +65,16 @@ if(move < 2) { //Limita a 2 las cartas por turno
         {
             
         attempts++
+        document.querySelector("#stats").innerHTML = attempts + " Intentos"
+        checkLose() // Verifica si el jugador ha superado los intentos
         document.querySelector(`#stats`).innerHTML = attempts + ` ` + `Trys`//Avanza el contador al darle la vuelta a 2 cartas
             if (selectedCards[0].querySelectorAll(`.face`)[0].innerHTML == selectedCards[1].querySelectorAll(`.face`)[0].innerHTML) // Comprueba que las 2 cartas son iguales
                {
                 selectedCards = []
                 move = 0
+                checkWin() // Verifica si todas las cartas están activas
             } // Reiniciamos las cartas seleccionadas y el contador de movimientos para seguir jugando
+
             else {
                 setTimeout(() => {
                     selectedCards[0].classList.remove(`active`)
@@ -65,6 +112,37 @@ function getImage(imageid){
 
 
 
+function restartGame() {
+    document.getElementById("game").innerHTML = "" // Borra las cartas
+    attempts = 0
+    move = 0
+    selectedCards = []
+    valuesUsed = []
+    document.querySelector("#stats").innerHTML = "0 Intentos" // Reinicia el contador de intentos
+    startGame() // Llama a la función que genera las cartas de nuevo
+}
+
+
+function checkWin() {
+    let allMatched = document.querySelectorAll(".card.active").length === totalCards
+    if (allMatched) {
+        setTimeout(() => {
+            alert(`Felicidades! Has ganado el juego `)
+            restartGame()
+        }, 500)
+    }
+}
+
+const maxAttempts = 20 // Límite de intentos permitidos
+
+function checkLose() {
+    if (attempts >= maxAttempts) {
+        setTimeout(() => {
+            alert("¡Perdiste! Superaste el límite de intentos 😞")
+            restartGame()
+        }, 500)
+    }
+}
 
 
 
@@ -74,15 +152,15 @@ function getImage(imageid){
 
 
 
-for (let i = 0; i < totalCards; i++) {
+/*for (let i = 0; i < totalCards; i++) {
     let div = document.createElement(`div`)
     div.innerHTML = model
     cards.push(div)
     document.querySelector(`#game`).appendChild(cards[i]) // Añadimos la carta creada como un hijo de game      
     randomValue() 
    /*  cards[i].querySelectorAll(`.face`)[0].innerHTML = valuesUsed[i] */ //Asignamos un valor a la carta
-    cards[i].querySelectorAll(`.face`)[0].innerHTML = getImage(valuesUsed[i]) //asignamos una imagen a la carta
-    cards[i].querySelectorAll(`.card`)[0].addEventListener(`click`, activate) // Cuando haga click en la carta se dará la vuelta
+    //cards[i].querySelectorAll(`.face`)[0].innerHTML = getImage(valuesUsed[i]) //asignamos una imagen a la carta
+    //cards[i].querySelectorAll(`.card`)[0].addEventListener(`click`, activate) // Cuando haga click en la carta se dará la vuelta
     
-} // Generador de cartas usando el modelo, que aplica un valor usando la fórmula random value y que permite dar la vuelta a las cartas clicando
+ // Generador de cartas usando el modelo, que aplica un valor usando la fórmula random value y que permite dar la vuelta a las cartas clicando
 
