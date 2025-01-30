@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const startMenu = document.createElement("div")
     startMenu.id = "start-menu"
-    startMenu.innerHTML = `
-        <div class="menu">
+    startMenu.innerHTML = 
+    `<div class="menu">
             <h1>MEMOJOJORY</h1>
             <label for="difficulty">Dificultad:</label>
     <select id="difficulty">
@@ -12,18 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
     </select>
     <button id="start-button">Iniciar Juego</button>
 </div>
-        </div>
-    `
-    document.body.appendChild(startMenu)
+        </div>`
+    document.body.appendChild(startMenu) //Crea el menu y lo añade al body
     
 
     document.getElementById("start-button").addEventListener("click", () => {
         let difficulty = document.getElementById("difficulty").value
 
         if (difficulty === "dificil") {
-            maxAttempts = 12 // Menos intentos en modo difícil
+            maxAttempts = 12 // Modo difícil
         } else {
-            maxAttempts = 20 // Intentos normales
+            maxAttempts = 20 // Normal
         }
         console.log("Intentos maximos actualizados a:", maxAttempts)
         setTimeout(() => {
@@ -40,9 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 })
 
+window.onload = function() {
+    menumusic.play()
+}
+
 const totalCards = 20 //Cartas en pantalla
+let menumusic = document.getElementById(`menumusic`)
 let flipSound = document.getElementById(`flip`)
-let startMenuSound = document.getElementById(`start`)
 let winSound = document.getElementById(`win`)
 let loseSound = document.getElementById(`lose`)
 let music = document.getElementById(`music`)
@@ -56,40 +59,20 @@ let maxAttempts = 20
 
 /* let model = `<div class="card"><div class="back"></div><div class="face"></div></div>` // Modelo de carta
  */
-
-
-
-
-
-let sound = new Audio(`.sonido/game.mp3`)
-
-
- /* playBtn.addEventListener(`click`, () =>{
-    sound.play()
- })
-
- pauseBtn.addEventListener(`click`, () =>{
-    sound.pause()
- }) */
-
-
     
 
-    // Obtener los botones por su id
-    let playButton = document.getElementById('playButton');
-    let pauseButton = document.getElementById('pauseButton');
-    
-    // Reproducir la música cuando se hace clic en el botón de reproducir
+    let playButton = document.getElementById('playButton')
+    let pauseButton = document.getElementById('pauseButton')
+      
     playButton.addEventListener('click', function() {
-        music.play();
-        console.log('Música Reproducida');
-    });
+        music.play()
+        console.log('Música Reproducida')
+    })
     
-    // Pausar la música cuando se hace clic en el botón de pausar
     pauseButton.addEventListener('click', function() {
-        music.pause();
-        console.log('Música Pausada');
-    });
+        music.pause()
+        console.log('Música Pausada')
+    })
 
 
 
@@ -102,11 +85,11 @@ function startGame() {
     // Actualizar el contador de intentos en la interfaz
     document.querySelector("#stats").innerHTML = "0 Intentos"
 
-    // Limpiar el tablero
+    // Limpia la pantalla
     document.getElementById("game").innerHTML = ""
 
     music.play()
-    // Generar nuevas cartas
+    
     let model = `<div class="card"><div class="back"></div><div class="face"></div></div>`
     for (let i = 0; i < totalCards; i++) {
         let div = document.createElement("div")
@@ -114,9 +97,9 @@ function startGame() {
         document.getElementById("game").appendChild(div)
         randomValue()
         div.querySelector(".face").innerHTML = getImage(valuesUsed[i]) // Asigna imagen a la carta
-        div.querySelector(".card").addEventListener("click", activate) // Agrega evento de clic
+        div.querySelector(".card").addEventListener("click", activate) // Permite voltear las cartas
     }
-}
+} //Genera cartas usando un modelo y les asigna una imagen aleatoria y flipearlas
 
 
 function activate(event) {
@@ -130,9 +113,8 @@ if(move < 2) { //Limita a 2 las cartas por turno
         {
             
         attempts++
-        
         checkLose() // Verifica si el jugador ha superado los intentos
-        document.querySelector(`#stats`).innerHTML = attempts + `/` + maxAttempts + ` Intentos`//Avanza el contador al darle la vuelta a 2 cartas
+        document.querySelector(`#stats`).innerHTML = attempts + `/` + maxAttempts + ` Intentos`//Avanza el contador al darle la vuelta a 2 cartas y lo reescribe
             if (selectedCards[0].querySelectorAll(`.face`)[0].innerHTML == selectedCards[1].querySelectorAll(`.face`)[0].innerHTML) // Comprueba que las 2 cartas son iguales
                {
                 selectedCards = []
@@ -171,7 +153,7 @@ function randomValue() {
 function getImage(imageid){
     return `<img alt="img ${imageid}" src="images/${imageid}.jpg"></img>`
 
-}
+} //Selector de imágenes
 
 /* cardsContainer.innerHTML = getImage([i]) */
 
@@ -184,8 +166,8 @@ function restartGame() {
     selectedCards = []
     valuesUsed = []
     document.querySelector("#stats").innerHTML = "0 Intentos" // Reinicia el contador de intentos
-    startGame() // Llama a la función que genera las cartas de nuevo
-}
+    startGame() // Inicia el juego otra vez
+} //reinicia la partida
 
 
 function checkWin() {
@@ -197,9 +179,9 @@ function checkWin() {
             restartGame()
         }, 500)
     }
-}
+} //Comprueba que ganas
 
-// Límite de intentos permitidos
+
 
 function checkLose() {
     if (attempts >= maxAttempts) {
@@ -209,7 +191,7 @@ function checkLose() {
             restartGame()
         }, 500)
     }
-}
+} //comprueba que pierdes
 
 
 

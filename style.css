@@ -1,5 +1,3 @@
-
-
 body {
    margin: 0;
    background: url(moreimages/Background4.jpg) center / contain no-repeat;
@@ -26,16 +24,18 @@ body {
    align-items: center;
    justify-content: center;
    flex-wrap: wrap;
-   visibility: hidden; /* Lo mantiene en su lugar sin afectar la cuadrícula */
-    opacity: 0; /* Lo hace invisible */
-    transition: opacity 0.5s ease-in-out;
-   
+   visibility: hidden;
+   /* Lo mantiene en su lugar sin afectar la cuadrícula */
+   opacity: 0;
+   /* Lo hace invisible */
+   transition: opacity 0.5s ease-in-out;
+
 }
 
 #stats {
    color: white;
    -webkit-text-stroke-width: 1.5px;
-  -webkit-text-stroke-color: black;
+   -webkit-text-stroke-color: black;
    padding: 20px;
    position: absolute;
    text-align: center;
@@ -45,8 +45,10 @@ body {
    display: none;
    /* display: none; */
 }
+
 #stats.show {
-   display: block !important; /* Se muestra cuando el juego empieza */
+   display: block !important;
+   /* Se muestra cuando el juego empieza */
 }
 
 .card {
@@ -54,7 +56,7 @@ body {
    height: 190px;
    margin: 18px;
    position: relative;
-   
+
    transition: transform 0.5s;
    /* Transición para el efecto de transformación giro */
    transform-style: preserve-3d;
@@ -80,25 +82,28 @@ body {
    /* Para que funcione tuve que impedir que pudieras clicar card como conjunto, con esto targeteas el back solamente */
 }
 
-.card .face {  
+.card .face {
    transform: rotateY(180deg);
    width: 100%;
    height: 100%;
 }
 
-.card .face img{
-   
+.card .face img {
+
    width: 100%;
    height: 100%;
 
 
-} /* hay que poner el img antes del corchete para que afecte a la imagen */
+}
+
+/* hay que poner el img antes del corchete para que afecte a la imagen */
 .card .back {
    width: 100%;
    height: 100%;
    background: url(moreimages/back1.jpg) center / contain no-repeat;
    background-size: 100%;
 }
+
 #start-menu {
    position: absolute;
    top: 0;
@@ -110,7 +115,7 @@ body {
 
 }
 
-.menu {   
+.menu {
    /* background: url(moreimages/Background.jpg) center / contain no-repeat; */
    /* background: url(moreimages/Background5.jpg) center/ 100% no-repeat; */
    width: 100%;
@@ -122,21 +127,21 @@ body {
    font-size: 60px;
 }
 
-.menu label{
+.menu label {
    font-size: 150px;
    line-height: 100%;
    color: white;
    -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: black;
+   -webkit-text-stroke-color: black;
 
 }
 
 
 .menu h1 {
    -webkit-text-stroke-width: 3.5px;
-  -webkit-text-stroke-color: black;
+   -webkit-text-stroke-color: black;
    margin-bottom: 20px;
-   color:white;
+   color: white;
 }
 
 
@@ -147,7 +152,7 @@ select {
    cursor: url(moreimages/cursor2.png), auto;
 }
 
-label{
+label {
    cursor: url(moreimages/cursor2.png), auto;
 }
 
@@ -168,7 +173,7 @@ label{
 }
 
 button {
-   width: auto; /* Cambiar a un tamaño automático para que no se estiren */
+   width: auto;
    height: auto;
    padding: 10px 20px;
    font-size: 16px;
@@ -180,17 +185,18 @@ button {
    border: none;
    border-radius: 5px;
    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+   
 }
 
 button:hover {
    background-color: #45a049;
 }
 
-/* Estilo para el contenedor de los botones */
+
 .control-buttons {
-   position: absolute;  
-   top: 50px;           
-   left: 50px;          
+   position: absolute;
+   top: 50px;
+   left: 50px;
    display: flex;
    justify-content: center;
    align-items: center;
