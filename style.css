@@ -112,27 +112,28 @@ body {
 
 .menu {   
    /* background: url(moreimages/Background.jpg) center / contain no-repeat; */
-   background: url(moreimages/Background5.jpg) center/ 100% no-repeat;;
+   /* background: url(moreimages/Background5.jpg) center/ 100% no-repeat; */
    width: 100%;
    height: 50%;
    margin-top: 200px;
    margin-left: 650px;
    margin-right: 650px;
    text-align: center;
-   font-size: 50px;
+   font-size: 60px;
 }
 
 .menu label{
-   font-size: 80px;
+   font-size: 150px;
+   line-height: 100%;
    color: white;
-   -webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: black;
 
 }
 
 
 .menu h1 {
-   -webkit-text-stroke-width: 3px;
+   -webkit-text-stroke-width: 3.5px;
   -webkit-text-stroke-color: black;
    margin-bottom: 20px;
    color:white;
@@ -140,6 +141,9 @@ body {
 
 
 select {
+   width: 220px;
+   height: 50px;
+   font-size: 20px;
    cursor: url(moreimages/cursor2.png), auto;
 }
 
@@ -148,7 +152,7 @@ label{
 }
 
 #start-button {
-   padding: 10px 20px;
+   padding: 20px;
    font-size: 16px;
    cursor: pointer;
    border: none;
@@ -184,12 +188,12 @@ button:hover {
 
 /* Estilo para el contenedor de los botones */
 .control-buttons {
-   position: absolute; /* Usar posición absoluta para colocar los botones fuera del flujo */
-   bottom: 20px; /* Colocarlos en la parte inferior de la pantalla */
-   left: 50%; /* Centrar los botones horizontalmente */
-   transform: translateX(-50%); /* Ajuste para centrar mejor */
+   position: absolute;  
+   top: 50px;           
+   left: 50px;          
    display: flex;
    justify-content: center;
    align-items: center;
-   margin-top: 20px; /* Ajusta si es necesario */
+   height: 100px;
+   width: 100px;
 }

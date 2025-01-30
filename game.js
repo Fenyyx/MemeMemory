@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startMenu.innerHTML = `
         <div class="menu">
             <h1>MEMOJOJORY</h1>
-            <label for="difficulty">Selecciona dificultad:</label>
+            <label for="difficulty">Dificultad:</label>
     <select id="difficulty">
         <option value="normal">Normal (20 intentos)</option>
         <option value="dificil">Dificil (12 intentos)</option>
