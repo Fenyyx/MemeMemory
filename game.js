@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let difficulty = document.getElementById("difficulty").value
 
         if (difficulty === "dificil") {
-            maxAttempts = 12 // Modo difícil
+            maxAttempts = 20 // Modo difícil
         } else {
-            maxAttempts = 20 // Normal
+            maxAttempts = 28 // Normal
         }
         console.log("Intentos maximos actualizados a:", maxAttempts)
         setTimeout(() => {
