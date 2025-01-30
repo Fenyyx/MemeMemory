@@ -1,24 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
     const startMenu = document.createElement("div")
     startMenu.id = "start-menu"
     startMenu.innerHTML = `
         <div class="menu">
             <h1>MEMOJOJORY</h1>
-            <button id="start-button">Iniciar Juego</button>
+            <label for="difficulty">Selecciona dificultad:</label>
+    <select id="difficulty">
+        <option value="normal">Normal (20 intentos)</option>
+        <option value="dificil">Dificil (12 intentos)</option>
+    </select>
+    <button id="start-button">Iniciar Juego</button>
+</div>
         </div>
     `
     document.body.appendChild(startMenu)
+    
 
     document.getElementById("start-button").addEventListener("click", () => {
-        document.getElementById("start-menu").style.display = "none"; // Oculta el menú
-        document.getElementById("game").style.visibility = "visible"; // Muestra el juego
-        document.getElementById("game").style.opacity = "1"; // Suaviza la transición
-        document.getElementById("stats").style.display = "block"; // Muestra intentos
+        let difficulty = document.getElementById("difficulty").value
+
+        if (difficulty === "dificil") {
+            maxAttempts = 12; // Menos intentos en modo difícil
+        } else {
+            maxAttempts = 20; // Intentos normales
+        }
+        console.log("Intentos maximos actualizados a:", maxAttempts)
+        setTimeout(() => {
+            document.getElementById("max-attempts").innerHTML = maxAttempts;
+        }, 500);
+    document.getElementById("current-attempts").innerHTML = "0"
+    document.getElementById("stats").classList.add("show");// Muestra intentos
+
+        document.getElementById("start-menu").style.display = "none" // Oculta el menú
+        document.getElementById("game").style.visibility = "visible" // Muestra el juego
+        document.getElementById("game").style.opacity = "1" // Suaviza la transición
+        
         startGame();
     });
 })
 
-const totalCards = 16 //Cartas en pantalla
+const totalCards = 20 //Cartas en pantalla
+let flipSound = document.getElementById(`flip`)
+let startMenuSound = document.getElementById(`start`)
+let winSound = document.getElementById(`win`)
+let loseSound = document.getElementById(`lose`)
+let music = document.getElementById(`music`)
+let maxAttempts = 20 
 //let cards = [] //Cartas generadas
 //let selectedCards = [] //Cartas seleccionadas
 //let valuesUsed = [] //Controla cuantas veces se ha usado un valores
@@ -28,13 +56,32 @@ const totalCards = 16 //Cartas en pantalla
 
 /* let model = `<div class="card"><div class="back"></div><div class="face"></div></div>` // Modelo de carta
  */
+
+
+
+
+
+let sound = new Audio(`.sonido/game.mp3`)
+
+ playBtn.addEventListener(`click`, () =>{
+    sound.play()
+ })
+
+ pauseBtn.addEventListener(`click`, () =>{
+    sound.pause()
+ })
+
+
+
+
+
+
 function startGame() {
     // Reiniciar variables
     attempts = 0
     move = 0
     selectedCards = []
     valuesUsed = []
-    
     // Actualizar el contador de intentos en la interfaz
     document.querySelector("#stats").innerHTML = "0 Intentos"
 
@@ -60,14 +107,14 @@ if(move < 2) { //Limita a 2 las cartas por turno
     if ((!selectedCards[0] || selectedCards[0] !== event.target) && !event.target.classList.contains(`active`)) {
         event.target.classList.add(`active`) //Le damos la clase activa a la carta seleccionada, y prevenimos que le de la vuelta a una carta ya activa
         selectedCards.push(event.target) //Si selectedCards está vacío o es diferente de la primera carta lo añadimos al array
-
+        flipSound.play()
         if (++move == 2) //aumentamos move y comprobamos si ya se seleccionaron 2 cartas 
         {
             
         attempts++
-        document.querySelector("#stats").innerHTML = attempts + " Intentos"
+        
         checkLose() // Verifica si el jugador ha superado los intentos
-        document.querySelector(`#stats`).innerHTML = attempts + ` ` + `Trys`//Avanza el contador al darle la vuelta a 2 cartas
+        document.querySelector(`#stats`).innerHTML = attempts + `/` + maxAttempts + ` Intentos`//Avanza el contador al darle la vuelta a 2 cartas
             if (selectedCards[0].querySelectorAll(`.face`)[0].innerHTML == selectedCards[1].querySelectorAll(`.face`)[0].innerHTML) // Comprueba que las 2 cartas son iguales
                {
                 selectedCards = []
@@ -126,6 +173,7 @@ function restartGame() {
 function checkWin() {
     let allMatched = document.querySelectorAll(".card.active").length === totalCards
     if (allMatched) {
+        winSound.play()
         setTimeout(() => {
             alert(`Felicidades! Has ganado el juego `)
             restartGame()
@@ -133,12 +181,13 @@ function checkWin() {
     }
 }
 
-const maxAttempts = 20 // Límite de intentos permitidos
+// Límite de intentos permitidos
 
 function checkLose() {
     if (attempts >= maxAttempts) {
         setTimeout(() => {
-            alert("¡Perdiste! Superaste el límite de intentos 😞")
+            loseSound.play()
+            alert("Perdiste! Superaste el limite de intentos ")
             restartGame()
         }, 500)
     }
