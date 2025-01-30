@@ -118,7 +118,6 @@ body {
    margin-top: 200px;
    margin-left: 650px;
    margin-right: 650px;
-   margin-bottom: 3000px;
    text-align: center;
    font-size: 50px;
 }
@@ -164,9 +163,33 @@ label{
    background: #0056b3;
 }
 
-#button-container {
-background-color: white;
-height: 100%;
-cursor: url(moreimages/cursor2.png), auto;
+button {
+   width: auto; /* Cambiar a un tamaño automático para que no se estiren */
+   height: auto;
+   padding: 10px 20px;
+   font-size: 16px;
+   margin: 10px;
+   margin-bottom: 100px;
+   cursor: pointer;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
 
+button:hover {
+   background-color: #45a049;
+}
+
+/* Estilo para el contenedor de los botones */
+.control-buttons {
+   position: absolute; /* Usar posición absoluta para colocar los botones fuera del flujo */
+   bottom: 20px; /* Colocarlos en la parte inferior de la pantalla */
+   left: 50%; /* Centrar los botones horizontalmente */
+   transform: translateX(-50%); /* Ajuste para centrar mejor */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px; /* Ajusta si es necesario */
 }

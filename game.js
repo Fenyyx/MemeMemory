@@ -21,23 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let difficulty = document.getElementById("difficulty").value
 
         if (difficulty === "dificil") {
-            maxAttempts = 12; // Menos intentos en modo difícil
+            maxAttempts = 12 // Menos intentos en modo difícil
         } else {
-            maxAttempts = 20; // Intentos normales
+            maxAttempts = 20 // Intentos normales
         }
         console.log("Intentos maximos actualizados a:", maxAttempts)
         setTimeout(() => {
-            document.getElementById("max-attempts").innerHTML = maxAttempts;
-        }, 500);
+            document.getElementById("max-attempts").innerHTML = maxAttempts
+        }, 500)
     document.getElementById("current-attempts").innerHTML = "0"
-    document.getElementById("stats").classList.add("show");// Muestra intentos
+    document.getElementById("stats").classList.add("show")// Muestra intentos
 
         document.getElementById("start-menu").style.display = "none" // Oculta el menú
         document.getElementById("game").style.visibility = "visible" // Muestra el juego
         document.getElementById("game").style.opacity = "1" // Suaviza la transición
         
-        startGame();
-    });
+        startGame()
+    })
 })
 
 const totalCards = 20 //Cartas en pantalla
@@ -63,16 +63,33 @@ let maxAttempts = 20
 
 let sound = new Audio(`.sonido/game.mp3`)
 
- playBtn.addEventListener(`click`, () =>{
+
+ /* playBtn.addEventListener(`click`, () =>{
     sound.play()
  })
 
  pauseBtn.addEventListener(`click`, () =>{
     sound.pause()
- })
+ }) */
 
 
+    
 
+    // Obtener los botones por su id
+    let playButton = document.getElementById('playButton');
+    let pauseButton = document.getElementById('pauseButton');
+    
+    // Reproducir la música cuando se hace clic en el botón de reproducir
+    playButton.addEventListener('click', function() {
+        music.play();
+        console.log('Música Reproducida');
+    });
+    
+    // Pausar la música cuando se hace clic en el botón de pausar
+    pauseButton.addEventListener('click', function() {
+        music.pause();
+        console.log('Música Pausada');
+    });
 
 
 
@@ -88,6 +105,7 @@ function startGame() {
     // Limpiar el tablero
     document.getElementById("game").innerHTML = ""
 
+    music.play()
     // Generar nuevas cartas
     let model = `<div class="card"><div class="back"></div><div class="face"></div></div>`
     for (let i = 0; i < totalCards; i++) {
