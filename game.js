@@ -39,9 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 })
 
-window.onload = function() {
-    menumusic.play()
-}
+
 
 const totalCards = 16 //Cartas en pantalla
 let menumusic = document.getElementById(`menumusic`)
