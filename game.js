@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <label for="difficulty">Dificultad:</label>
     <select id="difficulty">
         <option value="normal">Normal (20 intentos)</option>
-        <option value="dificil">Dificil (12 intentos)</option>
+        <option value="dificil">Dificil (16 intentos)</option>
     </select>
     <button id="start-button">Iniciar Juego</button>
 </div>
