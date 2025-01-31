@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let difficulty = document.getElementById("difficulty").value
 
         if (difficulty === "dificil") {
-            maxAttempts = 20 // Modo difícil
+            maxAttempts = 16 // Modo difícil
         } else {
-            maxAttempts = 28 // Normal
+            maxAttempts = 20 // Normal
         }
         console.log("Intentos maximos actualizados a:", maxAttempts)
         setTimeout(() => {
@@ -43,7 +43,7 @@ window.onload = function() {
     menumusic.play()
 }
 
-const totalCards = 20 //Cartas en pantalla
+const totalCards = 16 //Cartas en pantalla
 let menumusic = document.getElementById(`menumusic`)
 let flipSound = document.getElementById(`flip`)
 let winSound = document.getElementById(`win`)
